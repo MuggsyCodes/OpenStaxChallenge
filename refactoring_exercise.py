@@ -145,6 +145,33 @@ class Game:
 
 from random import randrange
 
+''' *** Begin game play ***
+ORIGINAL game play: Game begins by rolling a random number
+# A fixed number of players are added --> Players immediately begin rolling --> Questions from different
+categories are randomly assigned --> Questions from a category randomly assigned 
+'''
+
+'''What needs to be improved:
+* The game play is disjointed - makes sense to structure the game a bit so that the user knows what's happening. 
+* The following are also needed: 
+* Gold coins score - dictionary (Player: [score_list])
+* Player location - dictionary (Player: [user_location])
+* Penalty box status - probably a boolean 
+* List of questions - interaction with API question bank would be cool 
+* Removing questions from list 
+'''
+
+'''Ways to improve the game: 
+* Prompting the user to add players randomly
+- selected from the list
+* Create additional discrete classes: Player, Roll, Score, Question
+* A sweet ASCII gui with the OER name
+
+'''
+
+# 1. TODO: Create Player Class in a separte file
+
+
 if __name__ == '__main__':
     not_a_winner = False
 
@@ -163,20 +190,3 @@ if __name__ == '__main__':
             not_a_winner = game.was_correctly_answered()
 
         if not not_a_winner: break
-@MuggsyCodes
- 
-Leave a comment
-No file chosen
-Attach files by dragging & dropping, selecting or pasting them.
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
