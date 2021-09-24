@@ -2,9 +2,9 @@
 
 class Game:
     def __init__(self):
-        self.players = []
-        self.places = [0] * 6
-        self.purses = [0] * 6
+        self.players = [] ## Player class ##
+        self.places = [0] * 6 # corresponds to location # list of length 6 - why? 
+        self.purses = [0] * 6 # this is the gold coins score
         self.in_penalty_box = [0] * 6
 
         self.pop_questions = []
@@ -12,7 +12,7 @@ class Game:
         self.sports_questions = []
         self.rock_questions = []
 
-        self.current_player = 0
+        self.current_player = 0 ## Player class ##
         self.is_getting_out_of_penalty_box = False
 
         for i in range(50):
@@ -27,10 +27,15 @@ class Game:
     def is_playable(self):
         return self.how_many_players >= 2
 
+    ## Player class ##
     def add(self, player_name):
         self.players.append(player_name)
-        self.places[self.how_many_players] = 0
-        self.purses[self.how_many_players] = 0
+
+        # *** this appears to be redundant because it replaces 0 with 0 *** #
+        #self.places[self.how_many_players] = 0 # what exactly is going on here? # not understanding how_many_players property
+        
+        # *** this appears to be redundant because it replaces 0 with 0 *** #
+        #self.purses[self.how_many_players] = 0 
         self.in_penalty_box[self.how_many_players] = False
 
         print(player_name + " was added")
@@ -149,6 +154,7 @@ from random import randrange
 ORIGINAL game play: Game begins by rolling a random number
 # A fixed number of players are added --> Players immediately begin rolling --> Questions from different
 categories are randomly assigned --> Questions from a category randomly assigned 
+How to win: Player collects 6 gold coins
 '''
 
 '''What needs to be improved:
@@ -169,7 +175,21 @@ categories are randomly assigned --> Questions from a category randomly assigned
 
 '''
 
+''' ***************** My sausage making process *****************
+0. Understand how the game is played in reverse 
+1. What is required to win the game? - 6 gold coins by any player
+2. How does a player collect gold coins? - by giving correct answers to questions
+3. Game play aspects I don't understand now: 
+ - what do the places have to do with it? 
+ - what does the penalty box have to do with it? 
+ - why are there six values in the places, purses (score) and penalty box lists? 
+'''
+
+
+
 # 1. TODO: Create Player Class in a separte file
+# Why classes: makes it easier to modify the main parts of the game 
+# Plan is to: add players randomly from a list instead of just a static set of names
 
 
 if __name__ == '__main__':
@@ -184,9 +204,12 @@ if __name__ == '__main__':
     while True:
         game.roll(randrange(5) + 1)
 
+        #adding watch variable to track places list
+        p_places = game.places
+
         if randrange(9) == 7:
             not_a_winner = game.wrong_answer()
         else:
             not_a_winner = game.was_correctly_answered()
-
-        if not not_a_winner: break
+        # play game until not_a_winner is false
+        if not not_a_winner: break # if not True --> break
