@@ -33,21 +33,25 @@ class Questions():
     def create_rock_question(self, index):
         return "Rock Question %s" % index
 
-    # test method
-    def player_stuff(self): # note to self, self must always be there ...
-        print("Player stuff method")
-        x = player_obj.places
-        return print(f"Places{x}")
-
-    @property
-    def _testprop(self):
-        print("Player test prop")
-        x = player_obj.places
-        return print(f"Places test: {x}")
 
     # The player's location determines the selected category
     # Definitey can use switch statement here
     # Why? Because all if statements have to be evaluated each time which is inefficient
+    @property
+    def _current_category(self):
+        if player_obj.places[player_obj.current_player] == 0: return 'Pop'
+        if player_obj.places[player_obj.current_player] == 4: return 'Pop'
+        if player_obj.places[player_obj.current_player] == 8: return 'Pop'
+        if player_obj.places[player_obj.current_player] == 1: return 'Science'
+        if player_obj.places[player_obj.current_player] == 5: return 'Science'
+        if player_obj.places[player_obj.current_player] == 9: return 'Science'
+        if player_obj.places[player_obj.current_player] == 2: return 'Sports'
+        if player_obj.places[player_obj.current_player] == 6: return 'Sports'
+        if player_obj.places[player_obj.current_player] == 10: return 'Sports'
+        return 'Rock'
+
+
+    '''Commenting out for now to make changes
     @property
     def _current_category(self):
         if self.places[self.current_player] == 0: return 'Pop'
@@ -60,6 +64,7 @@ class Questions():
         if self.places[self.current_player] == 6: return 'Sports'
         if self.places[self.current_player] == 10: return 'Sports'
         return 'Rock'
+        '''
 
     # Questions class #
     # Definitey can use switch statement here
@@ -121,3 +126,23 @@ class Questions():
 
     def _did_player_win(self):
         return not (self.purses[self.current_player] == 6)
+
+
+## Test Stuff ###
+'''
+    # test method
+    def player_stuff(self): # note to self, self must always be there ...
+        print("Player stuff method")
+        x = player_obj.places
+        return print(f"Places{x}")
+
+    @property
+    def _testprop(self):
+        print("test prop")
+        if player_obj.places[player_obj.current_player] == 0: return 'Pop'
+        if player_obj.places[player_obj.current_player] == 4: return 'Pop'
+        return 'Rock dude'
+        # print("Player test prop")
+        # x = player_obj.places
+        # return print(f"Places test: {x}")
+        '''

@@ -1,5 +1,7 @@
 # Create player class
 
+#from questions import Questions
+
 import random
 
 # players_available = ["Mike", "Dennis", "Marvin", "Neil", "Chris", "Otto", "Phil" ]
@@ -21,7 +23,7 @@ class Player:
 
 
     # NOTE: probably need to rename the argument something different than the method for clarity
-    def roll(self, roll_value):
+    def roll(self, roll_value, questions_obj):
         print("%s is the current player" % self.players[self.current_player])
         print("They have rolled a %s" % roll_value)
         # if TRUE - NOT 0 or False, this evaluates
@@ -52,8 +54,10 @@ class Player:
             print(self.players[self.current_player] + \
                         '\'s new location is ' + \
                         str(self.places[self.current_player]))
-            print("The category is %s" % self._current_category)
-            self._ask_question()
+            print("The category is %s" % questions_obj._current_category)            
+            #print("The category is %s" % self._current_category)
+            questions_obj._ask_question()
+            #self._ask_question()
     
 
     def add(self, player_name):
