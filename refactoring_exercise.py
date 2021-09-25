@@ -7,8 +7,8 @@ class Game:
         self.purses = [0] * 6 # this is the gold coins score
         self.in_penalty_box = [0] * 6
 
-        self.pop_questions = []
-        self.science_questions = []
+        self.pop_questions = [] #* Question Class *#
+        self.science_questions = [] 
         self.sports_questions = []
         self.rock_questions = []
 
@@ -29,6 +29,7 @@ class Game:
     def create_rock_question(self, index):
         return "Rock Question %s" % index
 
+    # Player class
     def is_playable(self):
         return self.how_many_players >= 2
 
@@ -74,7 +75,7 @@ class Game:
                             str(self.places[self.current_player]))
                 print("The category is %s" % self._current_category)
                 self._ask_question()
-            else: # if player rolls an odd number after 
+            else: # if player rolls an EVEN number 
                 print("%s is not getting out of the penalty box" % self.players[self.current_player])
                 self.is_getting_out_of_penalty_box = False
         else: # if player NOT in penalty box
@@ -146,6 +147,7 @@ class Game:
 
             winner = self._did_player_win()
             self.current_player += 1
+            # if last player is reached, then start over with first player
             if self.current_player == len(self.players): self.current_player = 0
 
             return winner
@@ -156,6 +158,7 @@ class Game:
         self.in_penalty_box[self.current_player] = True
 
         self.current_player += 1
+        # if last player is reached, then start over with first player
         if self.current_player == len(self.players): self.current_player = 0
         return True
 
@@ -214,22 +217,23 @@ if __name__ == '__main__':
 
     game = Game()
 
+    # for players on list ... add function
     game.add('Chet')
     game.add('Pat')
     game.add('Sue')
 
     while True:
         # REFACTOR: 
-        # game.roll(randrange(0,6)) 0 to 5
-        game.roll(randrange(5) + 1) # why +1?
+        game.roll(randrange(0,6)) #0 to 5
+        #game.roll(randrange(5) + 1) # why +1?
 
         #adding watch variable to track places list
         # each players location - matches player index
-        p_places = game.places
-
-        if randrange(9) == 7:
+        val = randrange(9)
+        if val == 7:
+        #if randrange(9) == 7:
             not_a_winner = game.wrong_answer()
         else:
             not_a_winner = game.was_correctly_answered()
-        # play game until not_a_winner is false
+        # play game until not_a_winner is False
         if not not_a_winner: break # if not True --> break
