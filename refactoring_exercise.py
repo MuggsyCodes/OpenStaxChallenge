@@ -12,15 +12,20 @@ class Game:
         self.sports_questions = []
         self.rock_questions = []
 
+        # start game with player at index 0
         self.current_player = 0 ## Player class ##
         self.is_getting_out_of_penalty_box = False
 
+        # game is initiated with 50 dummy questions in each category
+        # this could also be done talking to a site via an API
         for i in range(50):
             self.pop_questions.append("Pop Question %s" % i)
             self.science_questions.append("Science Question %s" % i)
             self.sports_questions.append("Sports Question %s" % i)
             self.rock_questions.append(self.create_rock_question(i))
 
+    # why was this done separately? 
+    # this could be done for all questions
     def create_rock_question(self, index):
         return "Rock Question %s" % index
 
@@ -35,7 +40,9 @@ class Game:
         #self.places[self.how_many_players] = 0 # what exactly is going on here? # not understanding how_many_players property
         
         # *** this appears to be redundant because it replaces 0 with 0 *** #
-        #self.purses[self.how_many_players] = 0 
+        #self.purses[self.how_many_players] = 0
+        # players start off NOT inside the penalty box 
+        # Is this even needed if all values start at 0?
         self.in_penalty_box[self.how_many_players] = False
 
         print(player_name + " was added")
@@ -47,12 +54,14 @@ class Game:
     def how_many_players(self):
         return len(self.players)
 
+    # NOTE: probably need to rename the argument something different than the method for clarity
     def roll(self, roll):
         print("%s is the current player" % self.players[self.current_player])
         print("They have rolled a %s" % roll)
-
+        # if TRUE - NOT 0 or False, this evaluates
+        # # note: any number true EXCEPT 0
         if self.in_penalty_box[self.current_player]:
-            if roll % 2 != 0:
+            if roll % 2 != 0: # look for ODD number
                 self.is_getting_out_of_penalty_box = True
 
                 print("%s is getting out of the penalty box" % self.players[self.current_player])
@@ -65,26 +74,32 @@ class Game:
                             str(self.places[self.current_player]))
                 print("The category is %s" % self._current_category)
                 self._ask_question()
-            else:
+            else: # if player rolls an odd number after 
                 print("%s is not getting out of the penalty box" % self.players[self.current_player])
                 self.is_getting_out_of_penalty_box = False
-        else:
+        else: # if player NOT in penalty box
+            # update current player location
             self.places[self.current_player] = self.places[self.current_player] + roll
             if self.places[self.current_player] > 11:
                 self.places[self.current_player] = self.places[self.current_player] - 12
-
+            # I think this needs and else statement here or is the if statement dithers 
             print(self.players[self.current_player] + \
                         '\'s new location is ' + \
                         str(self.places[self.current_player]))
             print("The category is %s" % self._current_category)
             self._ask_question()
 
+    # Definitey can use switch statement here
+    # Why? Because all if statements have to be evaluated each time which is inefficient
     def _ask_question(self):
         if self._current_category == 'Pop': print(self.pop_questions.pop(0))
         if self._current_category == 'Science': print(self.science_questions.pop(0))
         if self._current_category == 'Sports': print(self.sports_questions.pop(0))
         if self._current_category == 'Rock': print(self.rock_questions.pop(0))
 
+    # The player's location determines the selected category
+    # Definitey can use switch statement here
+    # Why? Because all if statements have to be evaluated each time which is inefficient
     @property
     def _current_category(self):
         if self.places[self.current_player] == 0: return 'Pop'
@@ -121,7 +136,7 @@ class Game:
 
 
         else:
-
+            # REFACTOR: needs spelling update
             print("Answer was corrent!!!!")
             self.purses[self.current_player] += 1
             print(self.players[self.current_player] + \
@@ -147,7 +162,7 @@ class Game:
     def _did_player_win(self):
         return not (self.purses[self.current_player] == 6)
 
-
+# going to move this to before class declaration
 from random import randrange
 
 ''' *** Begin game play ***
@@ -182,7 +197,9 @@ How to win: Player collects 6 gold coins
 3. Game play aspects I don't understand now: 
  - what do the places have to do with it? 
  - what does the penalty box have to do with it? 
+   - how to get in and out of penalty box? 
  - why are there six values in the places, purses (score) and penalty box lists? 
+ 4. Roll is the main method in the game 
 '''
 
 
@@ -191,7 +208,7 @@ How to win: Player collects 6 gold coins
 # Why classes: makes it easier to modify the main parts of the game 
 # Plan is to: add players randomly from a list instead of just a static set of names
 
-
+# probably just call the game here instead of look for main
 if __name__ == '__main__':
     not_a_winner = False
 
@@ -202,9 +219,12 @@ if __name__ == '__main__':
     game.add('Sue')
 
     while True:
-        game.roll(randrange(5) + 1)
+        # REFACTOR: 
+        # game.roll(randrange(0,6)) 0 to 5
+        game.roll(randrange(5) + 1) # why +1?
 
         #adding watch variable to track places list
+        # each players location - matches player index
         p_places = game.places
 
         if randrange(9) == 7:
