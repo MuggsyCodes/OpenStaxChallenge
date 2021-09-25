@@ -15,7 +15,7 @@ class Player:
         self.purses = [0] * 6 # this is the gold coins score
         self.in_penalty_box = [0] * 6 # stores 0 or boolean T/F values
         # test value
-        self.test_player = "Carlos"
+        #self.test_player = "Carlos"
 
         # start game with first player in list (index 0)
         self.current_player = 0 ## Player class ##

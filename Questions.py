@@ -18,7 +18,7 @@ class Questions():
         self.sports_questions = []
         self.rock_questions = []
         #test attribue
-        self.test_question = ["Test question"]
+        #self.test_question = ["Test question"]
 
         # game is initiated with 50 dummy questions in each category
         # this could also be done talking to a site via an API
@@ -77,40 +77,42 @@ class Questions():
 
 
     def was_correctly_answered(self):
-        if self.in_penalty_box[self.current_player]:
-            if self.is_getting_out_of_penalty_box:
+        # if current player in penalty box
+        if player_obj.in_penalty_box[player_obj.current_player]:
+            print("player in penalty box")
+        #if self.in_penalty_box[self.current_player]:
+            if player_obj.is_getting_out_of_penalty_box:
                 print('Answer was correct!!!!')
-                self.purses[self.current_player] += 1
-                print(self.players[self.current_player] + \
+                player_obj.purses[player_obj.current_player] += 1
+                print(player_obj.players[player_obj.current_player] + \
                     ' now has ' + \
-                    str(self.purses[self.current_player]) + \
+                    str(player_obj.purses[player_obj.current_player]) + \
                     ' Gold Coins.')
 
                 winner = self._did_player_win()
-                self.current_player += 1
-                if self.current_player == len(self.players): self.current_player = 0
+                player_obj.current_player += 1
+                if player_obj.current_player == len(player_obj.players): player_obj.current_player = 0
 
                 return winner
             else:
-                self.current_player += 1
-                if self.current_player == len(self.players): self.current_player = 0
+                player_obj.current_player += 1
+                if player_obj.current_player == len(player_obj.players): player_obj.current_player = 0
                 return True
-
-
 
         else:
             # REFACTOR: needs spelling update (done)
-            print("Correct Answer!")
-            self.purses[self.current_player] += 1
-            print(self.players[self.current_player] + \
+            print("[NOT in penalty box]: Correct Answer!")
+            # one gold coin added at index of current player
+            player_obj.purses[player_obj.current_player] += 1
+            print(player_obj.players[player_obj.current_player] + \
                 ' now has ' + \
-                str(self.purses[self.current_player]) + \
+                str(player_obj.purses[player_obj.current_player]) + \
                 ' Gold Coins.')
 
             winner = self._did_player_win()
-            self.current_player += 1
+            player_obj.current_player += 1
             # if last player is reached, then start over with first player
-            if self.current_player == len(self.players): self.current_player = 0
+            if player_obj.current_player == len(player_obj.players): player_obj.current_player = 0
 
             return winner
 
