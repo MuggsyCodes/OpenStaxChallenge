@@ -4,6 +4,7 @@
 from questions import Questions
 #from player import Player
 from data import question_list
+from score import Score
 
 # module import
 from random import randrange
@@ -19,7 +20,8 @@ def play_oer():
 
     # show OER logo
     print(oer_logo)
-    user_choice_1 = input("Would you like to play OER?").lower()
+    # user promoted to start game
+    user_choice_1 = input("Would you like to play OER? ").lower()
     if user_choice_1 == "yes" or "y":
         # instaniate new Question object
         question = Questions()
@@ -31,26 +33,29 @@ def play_oer():
         #create list of questions from question bank
         question.question_bank(question_list)
 
+        # new score object
+        score = Score()
+
         while True:
             # roll method requires question object - WHY? #
             question.roll(randrange(0,6), question)
 
-            val = randrange(9)
-            if val == 7:
-            #if randrange(9) == 7:
+            # report score after each roll
+            score.report_score(question.players, question.purses)
+
+            if randrange(9) == 7:
                 not_a_winner = question.wrong_answer()
             else:
                 not_a_winner = question.was_correctly_answered()
             # play game until not_a_winner is False
             if not not_a_winner:
-                print(f"not a winner state: {not_a_winner}")
+                #print(f"not a winner state: {not_a_winner}")
                 print(f"Game over") 
                 print(calvin)
                 break # if not True --> break
     else:
         print("See you later.")
+
+# play game
 play_oer()
 
-'''What needs to happen exactly? 
-* question needs to have reference to newly created player object
-'''

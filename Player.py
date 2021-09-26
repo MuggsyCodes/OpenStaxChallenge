@@ -1,5 +1,7 @@
 # Create player class
 
+import time
+
 
 class Player:
     def __init__(self):
@@ -17,7 +19,8 @@ class Player:
 
 
     def roll(self, roll_value, questions_obj):
-        print("%s is the current player" % self.players[self.current_player])
+        print("%s is the current player and is ready to roll..." % self.players[self.current_player])
+        time.sleep(1)
         print("They have rolled a %s" % roll_value)
         # if TRUE - NOT 0 or False, this evaluates
         # # note: any number true EXCEPT 0
@@ -66,7 +69,7 @@ class Player:
     def add(self, player_name):
         # add player name to players list
         self.players.append(player_name)
-        print(f"players list within Player Class: {self.players}")
+        #print(f"players list within Player Class: {self.players}")
 
         # *** this appears to be redundant because it replaces 0 with 0 *** #
         #self.places[self.how_many_players] = 0 # what exactly is going on here? # not understanding how_many_players property

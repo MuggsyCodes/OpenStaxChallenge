@@ -95,7 +95,7 @@ class Questions(Player):
         # nested function inside big_switcher
         def _ask_question(self, category):
             ### begin switch dict code 
-            print("This is to be used inside inner1 function")
+            #print("This is to be used inside inner1 function")
             question_dictionary = {
                 'Pop': self.pop,
                 'Science': self.science,
@@ -103,7 +103,9 @@ class Questions(Player):
                 'Rock': self.rock,
 
             }
+            # return the function
             my_func = question_dictionary.get(category, lambda: "Undefined Category")
+            #execute the function
             my_func()
         return _ask_question(self, category)
 
