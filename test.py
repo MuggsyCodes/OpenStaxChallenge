@@ -2,39 +2,51 @@
 # Import classes from other files
 
 from questions import Questions
-from player import Player
+#from player import Player
 
 # module import
 from random import randrange
 
-#instantiate new Player object
-player = Player()
+# #instantiate new Player object
+# player = Player()
 
-# add players
-timmy = player.add("Timmy")
+# # add players
+# timmy = player.add("Timmy")
 
-amanda = player.add("Amanda")
+# amanda = player.add("Amanda")
 
-enzo = player.add("Enzo")
+# enzo = player.add("Enzo")
 
-# List of current players
-the_players = player.players
-print(f"List of current players: {the_players}")
+# # List of current players
+# the_players = player.players
+# print(f"List of current players: {the_players}")
 
-# instaniate new Question object
-question = Questions()
+# **** START OER GAME ******* # 
 
-# roll method requires question object
-player.roll(4, question)
+if __name__ == '__main__':
+    not_a_winner = False
 
-val = randrange(9)
-if val == 7:
-#if randrange(9) == 7:
-    not_a_winner = question.wrong_answer()
-else:
-    not_a_winner = question.was_correctly_answered()
-# play game until not_a_winner is False
-#if not not_a_winner: break # if not True --> break
+    # instaniate new Question object
+    question = Questions()
+    question.add("James")
+    question.add("Enzo")
+
+    while True:
+        # roll method requires question object - WHY? #
+        question.roll(randrange(0,6), question)
+
+        val = randrange(9)
+        if val == 7:
+        #if randrange(9) == 7:
+            not_a_winner = question.wrong_answer()
+        else:
+            not_a_winner = question.was_correctly_answered()
+        # play game until not_a_winner is False
+        if not not_a_winner:
+            print(f"not a winner state: {not_a_winner}")
+            print(f"Game over") 
+            break # if not True --> break
+
 
 '''What needs to happen exactly? 
 * question needs to have reference to newly created player object

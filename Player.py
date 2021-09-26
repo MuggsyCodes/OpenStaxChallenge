@@ -1,12 +1,6 @@
 # Create player class
 
-#from questions import Questions
 
-import random
-
-# players_available = ["Mike", "Dennis", "Marvin", "Neil", "Chris", "Otto", "Phil" ]
-
-# creating Player class using same variable names for ease 
 class Player:
     def __init__(self):
         # I might have to change this init list structure
@@ -61,7 +55,9 @@ class Player:
     
 
     def add(self, player_name):
+        # add player name to players list
         self.players.append(player_name)
+        print(f"players list within Player Class: {self.players}")
 
         # *** this appears to be redundant because it replaces 0 with 0 *** #
         #self.places[self.how_many_players] = 0 # what exactly is going on here? # not understanding how_many_players property

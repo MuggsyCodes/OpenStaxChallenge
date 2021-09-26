@@ -2,23 +2,15 @@ from player import Player
 
 # How to access player object attributes within the question class?
 
-    
-# create instance of player object
-# is this the best place? 
-player_obj = Player()
-#print(f"player object: {type(player_obj)}")
-#print(f"Player position (places): {player_obj.places}")
-
-class Questions():
+class Questions(Player):
 
     def __init__(self):
-        #super().__init__()
+        # Questions inherits from Player
+        super().__init__()
         self.pop_questions = [] #* Question Class *#
         self.science_questions = [] 
         self.sports_questions = []
         self.rock_questions = []
-        #test attribue
-        #self.test_question = ["Test question"]
 
         # game is initiated with 50 dummy questions in each category
         # this could also be done talking to a site via an API
@@ -37,6 +29,7 @@ class Questions():
     # The player's location determines the selected category
     # Definitey can use switch statement here
     # Why? Because all if statements have to be evaluated each time which is inefficient
+    '''
     @property
     def _current_category(self):
         if player_obj.places[player_obj.current_player] == 0: return 'Pop'
@@ -49,9 +42,8 @@ class Questions():
         if player_obj.places[player_obj.current_player] == 6: return 'Sports'
         if player_obj.places[player_obj.current_player] == 10: return 'Sports'
         return 'Rock'
+    '''
 
-
-    '''Commenting out for now to make changes
     @property
     def _current_category(self):
         if self.places[self.current_player] == 0: return 'Pop'
@@ -64,7 +56,6 @@ class Questions():
         if self.places[self.current_player] == 6: return 'Sports'
         if self.places[self.current_player] == 10: return 'Sports'
         return 'Rock'
-        '''
 
     # Questions class #
     # Definitey can use switch statement here
@@ -76,6 +67,45 @@ class Questions():
         if self._current_category == 'Rock': print(self.rock_questions.pop(0))
 
 
+    def was_correctly_answered(self):
+        if self.in_penalty_box[self.current_player]:
+            if self.is_getting_out_of_penalty_box:
+                print('Answer was correct!!!!')
+                self.purses[self.current_player] += 1
+                print(self.players[self.current_player] + \
+                    ' now has ' + \
+                    str(self.purses[self.current_player]) + \
+                    ' Gold Coins.')
+
+                winner = self._did_player_win()
+                self.current_player += 1
+                if self.current_player == len(self.players): self.current_player = 0
+
+                return winner
+            else:
+                self.current_player += 1
+                if self.current_player == len(self.players): self.current_player = 0
+                return True
+
+
+
+        else:
+            # REFACTOR: needs spelling update
+            print("Answer was corrent!!!!")
+            self.purses[self.current_player] += 1
+            print(self.players[self.current_player] + \
+                ' now has ' + \
+                str(self.purses[self.current_player]) + \
+                ' Gold Coins.')
+
+            winner = self._did_player_win()
+            self.current_player += 1
+            # if last player is reached, then start over with first player
+            if self.current_player == len(self.players): self.current_player = 0
+
+            return winner
+    
+    '''
     def was_correctly_answered(self):
         # if current player in penalty box
         if player_obj.in_penalty_box[player_obj.current_player]:
@@ -115,6 +145,7 @@ class Questions():
             if player_obj.current_player == len(player_obj.players): player_obj.current_player = 0
 
             return winner
+    '''
 
     def wrong_answer(self):
         print('Question was incorrectly answered')
