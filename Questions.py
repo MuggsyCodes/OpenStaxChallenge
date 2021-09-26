@@ -32,6 +32,7 @@ class Questions(Player):
 
     # use the switch method - argument current player location (self.places[self.current_player])
     # thank you Dennis
+
     def switcher(self, argument):
         category_switcher = {
             0: 'Pop',
@@ -46,9 +47,10 @@ class Questions(Player):
         }
 
         category = category_switcher.get(argument, 'Rock')
-        print(f"Chosen category: {category}")
+        #print(f"Chosen category: {category}")
+        return category
 
-
+    '''
     @property
     def _current_category(self):
         if self.places[self.current_player] == 0: return 'Pop'
@@ -60,16 +62,63 @@ class Questions(Player):
         if self.places[self.current_player] == 2: return 'Sports'
         if self.places[self.current_player] == 6: return 'Sports'
         if self.places[self.current_player] == 10: return 'Sports'
-        return 'Rock'
+        return "Rock"
+    '''
+
+    # Use this to combine category selector and ask question
+    def category_decorator(func):
+        def inner1(self, argument):
+            print("Inner function inside category decorator was called.")
+            category_switcher = {
+            0: 'Pop',
+            4: 'Pop',
+            8: 'Pop',
+            1: 'Science',
+            5: 'Science',
+            9: 'Science',
+            2: 'Sports',
+            6: 'Sports',
+            10: 'Sports',
+        }
+            category = category_switcher.get(argument, 'Rock')
+            print(f"Chosen Kategory (reached inner1): {category}")
+            #return category
+            func(self, category)
+            print("After function was executed.")
+
+        return inner1
 
     # Questions class #
     # Definitey can use switch statement here
     # Why? Because all if statements have to be evaluated each time which is inefficient
-    def _ask_question(self):
-        if self._current_category == 'Pop': print(self.pop_questions.pop(0))
-        if self._current_category == 'Science': print(self.science_questions.pop(0))
-        if self._current_category == 'Sports': print(self.sports_questions.pop(0))
-        if self._current_category == 'Rock': print(self.rock_questions.pop(0))
+
+    @category_decorator
+    def _ask_question(self, quest_catgy):
+        ### begin switch dict code 
+        print("This is to be used inside inner1 function")
+        question_dictionary = {
+            'Pop': print(self.pop_questions.pop(0)),
+            'Science': print(self.science_questions.pop(0)),
+            'Sports': print(self.sports_questions.pop(0)),
+            'Rock': print(self.rock_questions.pop(0)),
+
+        }
+        qc = question_dictionary.get(quest_catgy, "Undefined Category")
+        print(f"Inside ask_question: {qc}")
+
+        # if self._current_category == 'Pop': print(self.pop_questions.pop(0))
+        # if self._current_category == 'Science': print(self.science_questions.pop(0))
+        # if self._current_category == 'Sports': print(self.sports_questions.pop(0))
+        # if self._current_category == 'Rock': print(self.rock_questions.pop(0))
+
+    # Use this to combine category selector and ask question
+    def test_decorator(func):
+        def inner1():
+            print("Inner function inside test was called.")
+            # execute the function
+            func()
+            print("After function was executed.")
+            return inner1
 
 
     def was_correctly_answered(self):
