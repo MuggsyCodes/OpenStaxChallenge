@@ -14,6 +14,17 @@ class Questions(Player):
 
         # game is initiated with 50 dummy questions in each category
         # this could also be done talking to a site via an API
+
+
+    # I need to use HTML unescape to make the question look better
+    def question_bank(self, question_list):
+        for i in range(0, len(question_list)-1, 4):
+            self.pop_questions.append("Pop Question: %s" % question_list[i]["question"])
+            self.science_questions.append("Science Question: %s" % question_list[i+1]["question"])
+            self.sports_questions.append("Sports Question: %s" % question_list[i+2]["question"])
+            self.rock_questions.append("Rock Question: %s" % question_list[i+3]["question"])
+                
+    def dummy(self):
         for i in range(50):
             self.pop_questions.append("Pop Question %s" % i)
             self.science_questions.append("Science Question %s" % i)
@@ -81,7 +92,7 @@ class Questions(Player):
         print(f"Chosen Kategory: {category}")
         #return category
 
-        # nested function 
+        # nested function inside big_switcher
         def _ask_question(self, category):
             ### begin switch dict code 
             print("This is to be used inside inner1 function")
@@ -138,16 +149,6 @@ class Questions(Player):
         my_result = question_dictionary.get(category, lambda: "Undefined Category")
         print(my_result)
         return my_result
-
-
-    # Use this to combine category selector and ask question
-    def test_decorator(func):
-        def inner1():
-            print("Inner function inside test was called.")
-            # execute the function
-            func()
-            print("After function was executed.")
-            return inner1
 
 
     def was_correctly_answered(self):

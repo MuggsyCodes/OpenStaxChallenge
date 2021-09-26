@@ -3,6 +3,7 @@
 
 from questions import Questions
 #from player import Player
+from data import question_list
 
 # module import
 from random import randrange
@@ -22,9 +23,13 @@ def play_oer():
     if user_choice_1 == "yes" or "y":
         # instaniate new Question object
         question = Questions()
+
         question.add("James")
         question.add("Enzo")
         question.add("Woody")
+
+        #create list of questions from question bank
+        question.question_bank(question_list)
 
         while True:
             # roll method requires question object - WHY? #
