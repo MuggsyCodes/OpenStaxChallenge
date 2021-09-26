@@ -33,12 +33,13 @@ class Player:
                 print(self.players[self.current_player] + \
                             '\'s new location is ' + \
                             str(self.places[self.current_player]))
-                print("The SWITCHER category is %s" % questions_obj.switcher(self.places[self.current_player]))            
+                #print("The SWITCHER category is %s" % questions_obj.switcher(self.places[self.current_player]))            
                 #print("The category is %s" % self._current_category)
                 # test var #
-                category_var = questions_obj.switcher(self.places[self.current_player])
+                questions_obj.big_switcher(self.places[self.current_player])
                 # end test var #
-                self._ask_question(category_var)
+                # questions_obj._ask_question(self.places[self.current_player]) -- doesn't quite work
+                #self._ask_question()
             else: # if player rolls an EVEN number 
                 print("%s is not getting out of the penalty box" % self.players[self.current_player])
                 self.is_getting_out_of_penalty_box = False
@@ -51,14 +52,14 @@ class Player:
             print(self.players[self.current_player] + \
                         '\'s new location is ' + \
                         str(self.places[self.current_player]))
-            print("The SWITCHER category is %s" % questions_obj.switcher(self.places[self.current_player]))
+            #print("The SWITCHER category is %s" % questions_obj.switcher(self.places[self.current_player]))
             # *** call test function for switching map *** #
-            #questions_obj.switcher(self.places[self.current_player])
+            questions_obj.big_switcher(self.places[self.current_player])
             #print("The category is %s" % self._current_category)
             # test var #
-            category_var = questions_obj.switcher(self.places[self.current_player])
+            #category_var = questions_obj.switcher(self.places[self.current_player])
             # end test var #
-            questions_obj._ask_question(category_var)
+            # questions_obj._ask_question(self.places[self.current_player]) -- doesn't quite work
             #self._ask_question()
     
 
