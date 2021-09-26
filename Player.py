@@ -48,7 +48,9 @@ class Player:
             print(self.players[self.current_player] + \
                         '\'s new location is ' + \
                         str(self.places[self.current_player]))
-            print("The category is %s" % questions_obj._current_category)            
+            print("The category is %s" % questions_obj.switcher(self.places[self.current_player]))
+            # *** call test function for switching map *** #
+            #questions_obj.switcher(self.places[self.current_player])
             #print("The category is %s" % self._current_category)
             questions_obj._ask_question()
             #self._ask_question()

@@ -7,20 +7,6 @@ from questions import Questions
 # module import
 from random import randrange
 
-# #instantiate new Player object
-# player = Player()
-
-# # add players
-# timmy = player.add("Timmy")
-
-# amanda = player.add("Amanda")
-
-# enzo = player.add("Enzo")
-
-# # List of current players
-# the_players = player.players
-# print(f"List of current players: {the_players}")
-
 # **** START OER GAME ******* # 
 
 if __name__ == '__main__':
@@ -30,6 +16,7 @@ if __name__ == '__main__':
     question = Questions()
     question.add("James")
     question.add("Enzo")
+    question.add("Woody")
 
     while True:
         # roll method requires question object - WHY? #

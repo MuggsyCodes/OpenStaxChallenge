@@ -29,20 +29,25 @@ class Questions(Player):
     # The player's location determines the selected category
     # Definitey can use switch statement here
     # Why? Because all if statements have to be evaluated each time which is inefficient
-    '''
-    @property
-    def _current_category(self):
-        if player_obj.places[player_obj.current_player] == 0: return 'Pop'
-        if player_obj.places[player_obj.current_player] == 4: return 'Pop'
-        if player_obj.places[player_obj.current_player] == 8: return 'Pop'
-        if player_obj.places[player_obj.current_player] == 1: return 'Science'
-        if player_obj.places[player_obj.current_player] == 5: return 'Science'
-        if player_obj.places[player_obj.current_player] == 9: return 'Science'
-        if player_obj.places[player_obj.current_player] == 2: return 'Sports'
-        if player_obj.places[player_obj.current_player] == 6: return 'Sports'
-        if player_obj.places[player_obj.current_player] == 10: return 'Sports'
-        return 'Rock'
-    '''
+
+    # use the switch method - argument current player location (self.places[self.current_player])
+    # thank you Dennis
+    def switcher(self, argument):
+        category_switcher = {
+            0: 'Pop',
+            4: 'Pop',
+            8: 'Pop',
+            1: 'Science',
+            5: 'Science',
+            9: 'Science',
+            2: 'Sports',
+            6: 'Sports',
+            10: 'Sports',
+        }
+
+        category = category_switcher.get(argument, 'Rock')
+        print(f"Chosen category: {category}")
+
 
     @property
     def _current_category(self):
