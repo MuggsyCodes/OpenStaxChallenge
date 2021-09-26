@@ -96,21 +96,6 @@ class Questions(Player):
             my_func()
         return _ask_question(self, category)
 
-    '''
-    @property
-    def _current_category(self):
-        if self.places[self.current_player] == 0: return 'Pop'
-        if self.places[self.current_player] == 4: return 'Pop'
-        if self.places[self.current_player] == 8: return 'Pop'
-        if self.places[self.current_player] == 1: return 'Science'
-        if self.places[self.current_player] == 5: return 'Science'
-        if self.places[self.current_player] == 9: return 'Science'
-        if self.places[self.current_player] == 2: return 'Sports'
-        if self.places[self.current_player] == 6: return 'Sports'
-        if self.places[self.current_player] == 10: return 'Sports'
-        return "Rock"
-    '''
-
     # Use this to combine category selector and ask question
     # I couldn't quite get this to work
     def category_decorator(func):
@@ -138,7 +123,7 @@ class Questions(Player):
     # Questions class #
     # Definitey can use switch statement here
     # Why? Because all if statements have to be evaluated each time which is inefficient
-
+    # --- this almost works but prints all questions after only single category chosen ---- #
     @category_decorator
     def _ask_question(self, category):
         ### begin switch dict code 
@@ -153,24 +138,7 @@ class Questions(Player):
         my_result = question_dictionary.get(category, lambda: "Undefined Category")
         print(my_result)
         return my_result
-    #return _ask_question
-    # def _ask_question(self, quest_catgy):
-    #     ### begin switch dict code 
-    #     print("This is to be used inside inner1 function")
-    #     question_dictionary = {
-    #         'Pop': print(self.pop_questions.pop(0)),
-    #         'Science': print(self.science_questions.pop(0)),
-    #         'Sports': print(self.sports_questions.pop(0)),
-    #         'Rock': print(self.rock_questions.pop(0)),
 
-    #     }
-    #     qc = question_dictionary.get(quest_catgy, "Undefined Category")
-    #     print(f"Inside ask_question: {qc}")
-
-        # if self._current_category == 'Pop': print(self.pop_questions.pop(0))
-        # if self._current_category == 'Science': print(self.science_questions.pop(0))
-        # if self._current_category == 'Sports': print(self.sports_questions.pop(0))
-        # if self._current_category == 'Rock': print(self.rock_questions.pop(0))
 
     # Use this to combine category selector and ask question
     def test_decorator(func):
@@ -219,6 +187,56 @@ class Questions(Player):
             if self.current_player == len(self.players): self.current_player = 0
 
             return winner
+
+
+    def wrong_answer(self):
+        print('Question was incorrectly answered')
+        print(self.players[self.current_player] + " was sent to the penalty box")
+        self.in_penalty_box[self.current_player] = True
+
+        self.current_player += 1
+        # if last player is reached, then start over with first player
+        if self.current_player == len(self.players): self.current_player = 0
+        return True
+
+
+    ### Test stuff ### 
+
+    #return _ask_question
+    # def _ask_question(self, quest_catgy):
+    #     ### begin switch dict code 
+    #     print("This is to be used inside inner1 function")
+    #     question_dictionary = {
+    #         'Pop': print(self.pop_questions.pop(0)),
+    #         'Science': print(self.science_questions.pop(0)),
+    #         'Sports': print(self.sports_questions.pop(0)),
+    #         'Rock': print(self.rock_questions.pop(0)),
+
+    #     }
+    #     qc = question_dictionary.get(quest_catgy, "Undefined Category")
+    #     print(f"Inside ask_question: {qc}")
+
+        # if self._current_category == 'Pop': print(self.pop_questions.pop(0))
+        # if self._current_category == 'Science': print(self.science_questions.pop(0))
+        # if self._current_category == 'Sports': print(self.sports_questions.pop(0))
+        # if self._current_category == 'Rock': print(self.rock_questions.pop(0))
+
+
+    '''
+    @property
+    def _current_category(self):
+        if self.places[self.current_player] == 0: return 'Pop'
+        if self.places[self.current_player] == 4: return 'Pop'
+        if self.places[self.current_player] == 8: return 'Pop'
+        if self.places[self.current_player] == 1: return 'Science'
+        if self.places[self.current_player] == 5: return 'Science'
+        if self.places[self.current_player] == 9: return 'Science'
+        if self.places[self.current_player] == 2: return 'Sports'
+        if self.places[self.current_player] == 6: return 'Sports'
+        if self.places[self.current_player] == 10: return 'Sports'
+        return "Rock"
+    '''
+
     
     '''
     def was_correctly_answered(self):
@@ -261,36 +279,3 @@ class Questions(Player):
 
             return winner
     '''
-
-    def wrong_answer(self):
-        print('Question was incorrectly answered')
-        print(self.players[self.current_player] + " was sent to the penalty box")
-        self.in_penalty_box[self.current_player] = True
-
-        self.current_player += 1
-        # if last player is reached, then start over with first player
-        if self.current_player == len(self.players): self.current_player = 0
-        return True
-
-    def _did_player_win(self):
-        return not (self.purses[self.current_player] == 6)
-
-
-## Test Stuff ###
-'''
-    # test method
-    def player_stuff(self): # note to self, self must always be there ...
-        print("Player stuff method")
-        x = player_obj.places
-        return print(f"Places{x}")
-
-    @property
-    def _testprop(self):
-        print("test prop")
-        if player_obj.places[player_obj.current_player] == 0: return 'Pop'
-        if player_obj.places[player_obj.current_player] == 4: return 'Pop'
-        return 'Rock dude'
-        # print("Player test prop")
-        # x = player_obj.places
-        # return print(f"Places test: {x}")
-        '''
