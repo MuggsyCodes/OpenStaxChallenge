@@ -1,7 +1,8 @@
 #request question data from API endpoint
 
-# when requests actually cooperates
-#import requests
+# I used requests to make an API call to a quiz question generator app
+# questions are returned as json data which I use as a dictionary in python 
+import requests
 
 parameters = {
     'amount': 48,

@@ -15,46 +15,47 @@ from art_1 import calvin
 # **** START OER GAME ******* # 
 
 def play_oer():
-#if __name__ == '__main__':
-    not_a_winner = False
+    if __name__ == '__main__':
+        not_a_winner = False
 
     # show OER logo
     print(oer_logo)
     # user promoted to start game
-    user_choice_1 = input("Would you like to play OER? ").lower()
-    if user_choice_1 == "yes" or "y":
+    #user_choice_1 = input("Would you like to play OER? ").lower()
+    #if user_choice_1 == "yes" or "y":
         # instaniate new Question object
-        question = Questions()
+    question = Questions()
 
-        question.add("James")
-        question.add("Enzo")
-        question.add("Woody")
+    question.add("James")
+    question.add("Enzo")
+    question.add("Woody")
 
-        #create list of questions from question bank
-        question.question_bank(question_list)
+    #create list of questions from question bank
+    question.question_bank(question_list)
 
-        # new score object
-        score = Score()
+    # new score object
+    score = Score()
 
-        while True:
-            # roll method requires question object - WHY? #
-            question.roll(randrange(0,6), question)
+    while True:
+        # roll method requires question object - WHY? #
+        question.roll(randrange(0,6), question)
 
-            # report score after each roll
+        # report score each time the first player is about to roll
+        if question.current_player == 0:
             score.report_score(question.players, question.purses)
 
-            if randrange(9) == 7:
-                not_a_winner = question.wrong_answer()
-            else:
-                not_a_winner = question.was_correctly_answered()
-            # play game until not_a_winner is False
-            if not not_a_winner:
-                #print(f"not a winner state: {not_a_winner}")
-                print(f"Game over") 
-                print(calvin)
-                break # if not True --> break
-    else:
-        print("See you later.")
+        if randrange(9) == 7:
+            not_a_winner = question.wrong_answer()
+        else:
+            not_a_winner = question.was_correctly_answered()
+        # play game until not_a_winner is False
+        if not not_a_winner:
+            #print(f"not a winner state: {not_a_winner}")
+            print(f"Game over") 
+            print(calvin)
+            break # if not True --> break
+# else:
+#     print("See you later.")
 
 # play game
 play_oer()
