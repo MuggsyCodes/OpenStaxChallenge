@@ -2,15 +2,17 @@
 
 import time
 
-available_players = ["Neil", "Phil", "Chris", "Otto", "Marvin"]#, "Dennis", "Mike"]
+available_players = ["Neil", "Phil", "Chris", "Otto", "Marvin", "Dennis", "Mike"]
 
 class Player:
     def __init__(self):
         # I might have to change this init list structure
         self.players = [] ## Player class ##
-        self.places = [0] * 6 # corresponds to location # list of length 6 - why? 
-        self.purses = [0] * 6 # this is the gold coins score
-        self.in_penalty_box = [0] * 6 # stores 0 or boolean T/F values
+        # I changed all these lists to be added to upon new player creation
+        # Why? So that the number of players is not limited
+        self.places = [] #[0] * 6 #6 # corresponds to location # list of length 6 - why? 
+        self.purses = [] #[0] * 6 # this is the gold coins score
+        self.in_penalty_box = [] # Let's try an empty list here [0] * 6 # stores 0 or boolean T/F values
         # test value
         #self.test_player = "Carlos"
 
@@ -80,8 +82,11 @@ class Player:
         #self.purses[self.how_many_players] = 0
         # players start off NOT inside the penalty box 
         # Is this even needed if all values start at 0?
-        self.in_penalty_box[self.how_many_players] = False
-
+        #self.in_penalty_box[self.how_many_players] = False
+        self.in_penalty_box.append(False)
+        # add 0 to the places list when adding a new player
+        self.places.append(0)
+        self.purses.append(0)
         print(player_name + " was added")
         print("They are player number %s" % len(self.players))
 
@@ -91,6 +96,7 @@ class Player:
     def how_many_players(self):
         return len(self.players)
 
+    # must have at least 2 players for the game to run 
     def is_playable(self):
         return self.how_many_players >= 2
 
