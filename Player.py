@@ -2,6 +2,7 @@
 
 import time
 
+available_players = ["Neil", "Phil", "Chris", "Otto", "Marvin"]#, "Dennis", "Mike"]
 
 class Player:
     def __init__(self):

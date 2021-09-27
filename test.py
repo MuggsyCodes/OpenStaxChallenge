@@ -2,7 +2,8 @@
 # Import classes from other files
 
 from questions import Questions
-#from player import Player
+# list of players
+from player import available_players
 from data import question_list
 from score import Score
 
@@ -26,9 +27,13 @@ def play_oer():
         # instaniate new Question object
     question = Questions()
 
-    question.add("James")
-    question.add("Enzo")
-    question.add("Woody")
+    ### Manually add players ### 
+    #question.add("James")
+    #question.add("Enzo")
+    #question.add("Woody")
+
+    for player in available_players:
+        question.add(player)
 
     #create list of questions from question bank
     question.question_bank(question_list)
@@ -42,7 +47,8 @@ def play_oer():
 
         # report score each time the first player is about to roll
         if question.current_player == 0:
-            score.report_score(question.players, question.purses)
+            # dictionary of player data and names
+            player_dictionary = score.report_score(question.players, question.purses)
 
         if randrange(9) == 7:
             not_a_winner = question.wrong_answer()
@@ -51,7 +57,9 @@ def play_oer():
         # play game until not_a_winner is False
         if not not_a_winner:
             #print(f"not a winner state: {not_a_winner}")
-            print(f"Game over") 
+            score.score_file(player_dictionary)
+            print(f"Game over - new DataFile created")
+            # print ending logo
             print(calvin)
             break # if not True --> break
 # else:
