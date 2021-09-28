@@ -1,4 +1,5 @@
 # this is to keep track of score inside data file
+from os import name
 import pandas as pd
 from datetime import datetime
 
@@ -23,10 +24,29 @@ class Score:
         #d = dict(zip(player_list, player_score))
         #self.score = d
         # print each name: score
-        for item in d:
-            print(f"{item} current score: {d[item]}")
+        name_score = [(key, value) for key, values in d.items() for value in values]
+        print(name_score)
+        # Winning ugly to try to get the names and gold coins score to show up
+        # starting with a dictionary of list ints
+        A = []
+        B = []
+        for my_tuple in name_score:
+            if 'Name' in my_tuple:
+                x = my_tuple[1]
+                A.append(x)
+                #print(x)
+            else:
+                y = my_tuple[1]
+                B.append(y)
+                #print(y)
+        #print(A, B)
+        c=0
+        for a_item in A:
+            print(f"Player {a_item}, has {B[c]} Coins")
+            c+=1
+         # Index not required
         df = pd.DataFrame(d)#, index=[f"Final Score: {c_t}"])
-        print(df)
+        #print(df)
         # return score score dictionary
         return d
 
@@ -40,7 +60,7 @@ class Score:
         current_time = datetime.now()
         # dd/mm/YY H:M:S
         c_t = current_time.strftime("%d/%m/%Y") #%H:%M:%S")
-        print("date and time =", c_t)
+        #print("date and time =", c_t)
         #a_dict["Time stamp"] = c_t
         # use dictionary item to create dataframe
         # include final score timestamp for records
@@ -64,16 +84,16 @@ class Score:
             # get list of scores from dictionary arg
             s_l = a_dict["Score"]
             n_l = a_dict["Name"]
-            print(s_l, n_l)
+            #print(s_l, n_l)
             df_2 = pd.DataFrame(a_dict)
             # assign new values to data_from read from CSV
             score_title = "score"+c_t
             #df_2 = df_score.assign(name = n_l, score_title = s_l)
             #print("Updated score")
-            print(f"DataFrame from dictionary argument\n{df_2}")
+            #print(f"DataFrame from dictionary argument\n{df_2}")
             # append new dataframe to NEXT COL of df_score dataframe
             df_new = pd.concat([df_score, df_2], axis=1)
-            print(f"DataFrame from COMBINED DFs\n{df_new}")
+            #print(f"DataFrame from COMBINED DFs\n{df_new}")
             #df_score = df_score.append(a_dict, ignore_index=True)
             #df_score.loc[len(df_score.index)] = a_dict
             # df_updated = df_score.append(data_frame)
@@ -85,6 +105,6 @@ class Score:
 
 
 # testing Score 
-# s = Score()
-# d = s.report_score(player_list, player_score)
-# s.score_file(d)
+#s = Score()
+#d = s.report_score(player_list, player_score)
+#s.score_file(d)

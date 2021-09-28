@@ -101,7 +101,7 @@ class Player:
         return self.how_many_players >= 2
 
     def _did_player_win(self):
-        print(f"{self.players[self.current_player]} Wins the Game!")
+        #print(f"{self.players[self.current_player]} Wins the Game!")
         return not (self.purses[self.current_player] == 6)
 
 

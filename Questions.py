@@ -106,6 +106,8 @@ class Questions(Player):
             # return the function
             my_func = question_dictionary.get(category, lambda: "Undefined Category")
             #execute the function
+            # !! I need a try except statement here to avoid crashing the game 
+            # on an IndexError when question list is exhausted !! #
             my_func()
         return _ask_question(self, category)
 

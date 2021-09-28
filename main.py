@@ -57,12 +57,14 @@ def play_oer():
                 # play game until not_a_winner is False
                 if not not_a_winner:
                     #print(f"not a winner state: {not_a_winner}")
+                    print(f"{question.players[question.current_player]} Wins the game!")
                     score.score_file(player_dictionary)
                     print(f"Game over - new DataFile created")
                     # print ending logo
                     print(calvin)
                     break # if not True --> break
-            # recursive call to begin game again
+            # recursive call to begin game again - NOT working as expected
+            #play_oer()
         else:
             print("See you later.")
 
