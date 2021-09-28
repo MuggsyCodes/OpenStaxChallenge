@@ -1,16 +1,19 @@
-# Using this script as a test bed for my changes
+# Run this file to play the game 
+# I have been using this script as a test bed for my changes
 # Import classes from other files
 
 from questions import Questions
-# list of players
+# import list of players
 from player import available_players
+# import list of 48 questions retrieved from API
 from data import question_list
+# import Score class
 from score import Score
 
-# module import
 from random import randrange
 
-from OER_logo import oer_logo
+# import sweet ASCII art
+from OER_logo import oer_logo, oer_logo_2
 from art_1 import calvin
 
 # **** START OER GAME ******* # 
@@ -21,6 +24,7 @@ def play_oer():
 
         # show OER logo
         print(oer_logo)
+        print(oer_logo_2)
         # user promoted to start game
         user_choice_1 = input("Would you like to play OER? ").lower()
         if user_choice_1 == "yes" or "y":

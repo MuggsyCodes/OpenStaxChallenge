@@ -24,7 +24,7 @@ class Player:
     def roll(self, roll_value, questions_obj):
         print("%s is the current player and is ready to roll..." % self.players[self.current_player])
         #pause the output of the roll to make game play smoother
-        time.sleep(.25)
+        time.sleep(1)
         print("They have rolled a %s" % roll_value)
         # if TRUE - NOT 0 or False, this evaluates
         # # note: any number true EXCEPT 0

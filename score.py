@@ -6,6 +6,7 @@ from datetime import datetime
 # test data
 player_list = ["dan", "ace", "tom"]
 player_score = [1, 3, 7, 0, 0, 0]
+# Didn't use this dictionary format after all
 #test_dictionary = {"one": 1, "two":2, "three":3,}
 
 class Score:
@@ -105,6 +106,6 @@ class Score:
 
 
 # testing Score 
-#s = Score()
-#d = s.report_score(player_list, player_score)
-#s.score_file(d)
+s = Score()
+d = s.report_score(player_list, player_score)
+s.score_file(d)
