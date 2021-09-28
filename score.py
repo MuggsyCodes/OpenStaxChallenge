@@ -80,7 +80,7 @@ class Score:
             #     dummy_df.to_csv("game_data.csv", index=True)
         else:
             # data frame from existing text file        
-            print(f"DataFrame from opening csv\n{df_score}")
+            #print(f"DataFrame from opening csv\n{df_score}")
             # get list of scores from dictionary arg
             s_l = a_dict["Score"]
             n_l = a_dict["Name"]
