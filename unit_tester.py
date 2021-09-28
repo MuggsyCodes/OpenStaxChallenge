@@ -6,7 +6,6 @@
 # Moving forward: I'm planning to learn how to really capitalize on built in 
 # unit testing as well some of the python debuggers available like pdb
 
-
 import unittest
 
 #testing a case-switch statement 
@@ -35,5 +34,10 @@ class Switcher(unittest.TestCase):
   def check_bad_input(self):
         self.assertEqual(switcher(12), 'Science')
 
-unittest.main(argv=[''], verbosity=2, exit=False)
+if __name__ == '__main__':
+    unittest.main()
+
+# I was actually in a Google Colab notebook testing this out 
+# that's why I had line below
+#unittest.main(argv=[''], verbosity=2, exit=False)
 
