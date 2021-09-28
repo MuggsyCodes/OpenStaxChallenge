@@ -1,6 +1,51 @@
 # OpenStaxChallenge
 OpenStax interview practical exercise
 Completing in response to the OpenStax interview practial exercise - completed by Charles Avila
+
+
+*********** README.md instructions ******************
+** Please run the main.py file to play the Opportunity with Every Roll game **
+
+Notes regarding OER program: 
+* I have comments in all files including the original refactoring_exercise.py file
+* Important: Please keep in mind that I kept a LOT of commented code in tact so that you could better understand my 'sausage making process'
+* In production code, I wouldn't leave so much in there
+
+* My intent with game was two fold: 
+1. Improve the mechanics of the existing code so that someone else looking at the code base could fairly easily figure out what is going on. I tried to accomplish this by:  
+(I) Splitting up original Game class into two main classes Questions and Player in order to add modularity
+(II) Removing redundant code
+(III) Reducing a few functions by combining more functionality into others
+(Iv) Improving inefficiencies like lots of if statements with switch statements 
+
+2. Create a more fun user experience seeing how it's a game
+(I) Added amazing ASCII art graphics at beginning when user is prompted 
+(II) Incorporated actual questions for each category 
+(III) Slowed down game play a bit
+(IV) Added a score class and methods to provide 'live' updates and keep track of winners
+(VI) Ability to add more than six players and choose from a player list
+
+
+Things that did not quite work, but with more time should be doable:  
+* Error handling when questions are exhausted 
+- this is easily remedied by simply addding more questions based on the number of players
+* Tried to use a wrapper function - not necessary, but perhaps a good approach 
+- used nested functions instead
+* Tried to use recursion to prompt user to play game over again
+- I couldn't end the game how I wanted it 
+* Keeping track of more game play metrics like number of wins per player
+- Just ran out of time and didn't want to spend more time on minutae
+* Full fledged unittesting 
+- Used the VSCode debugger and in-line print statements in the separate Class files
+- this works OK, but I know I plan to really get a handle on QA/QC testing when I'm part of the OpenStax Dev Team :-)
+
+
+
+
+
+
+
+
 *********** Original README.md instructions ******************
 
 
