@@ -106,7 +106,10 @@ class Game:
     # The player's location determines the selected category
     # Definitey can use switch statement here
     # Why? Because all if statements have to be evaluated each time which is inefficient
+
     @property
+    # I think this property makes current category immutable, but also accessible as an attribute - using "."/dot notation. 
+    # I.e., I can't go reset the current category property
     def _current_category(self):
         if self.places[self.current_player] == 0: return 'Pop'
         if self.places[self.current_player] == 4: return 'Pop'
