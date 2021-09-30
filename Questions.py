@@ -61,7 +61,7 @@ class Questions(Player):
         #print(f"Chosen category: {category}")
         return category
 
-    # define functions when categories are chosen
+    # define functions for when categories are chosen in case-switch
     def pop(self):
         return print(self.pop_questions.pop(0))
     
@@ -74,8 +74,9 @@ class Questions(Player):
     def rock(self):
         return print(self.rock_questions.pop(0))
 
-
+    # this is what I actually used in main.py
     def big_switcher(self, argument):
+        '''argument is roll result'''
         category_switcher = {
         0: 'Pop',
         4: 'Pop',
@@ -88,7 +89,7 @@ class Questions(Player):
         10: 'Sports',
     }
 
-        category = category_switcher.get(argument, 'Rock')
+        category = category_switcher.get(argument, 'Rock') # return rock with any other number besides ones in dictionary
         print(f"Chosen Kategory: {category}")
         #return category
 

@@ -24,7 +24,7 @@ class Player:
     def roll(self, roll_value, questions_obj):
         print("%s is the current player and is ready to roll..." % self.players[self.current_player])
         #pause the output of the roll to make game play smoother
-        time.sleep(1)
+        #time.sleep(1)
         print("They have rolled a %s" % roll_value)
         # if TRUE - NOT 0 or False, this evaluates
         # # note: any number true EXCEPT 0
@@ -92,13 +92,18 @@ class Player:
 
         return True
 
+    
     @property
+    # I think this property makes current category immutable, but also accessible as an attribute - using "."/dot notation. 
+    # I.e., I can't go reset the current category property
     def how_many_players(self):
         return len(self.players)
+
 
     # must have at least 2 players for the game to run 
     def is_playable(self):
         return self.how_many_players >= 2
+
 
     def _did_player_win(self):
         #print(f"{self.players[self.current_player]} Wins the Game!")
